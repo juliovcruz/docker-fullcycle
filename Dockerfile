@@ -5,7 +5,7 @@ COPY . .
 
 RUN go get -d -v \
   && go install -v \
-  && go build -o main .
+  && go build -ldflags '-w -s' -o main main.go
 
 FROM scratch
 COPY --from=builder /go/src/api/main .
